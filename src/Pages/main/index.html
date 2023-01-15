@@ -108,7 +108,7 @@
           var accuracy = 7;
           var accuracy2 = localStorage.getItem("certainty_value");
           if (accuracy2 == null) {
-            localStorage.setItem("certainty_value", 7);
+            accuracy2 = 7;
           }
           var r = document.querySelector(':root');
           function myFunction_get(i) {

@@ -111,6 +111,9 @@
           }
           var accuracy = 7;
           var accuracy2 = localStorage.getItem("certainty_value");
+          if (accuracy2 == null) {
+            accuracy2 = 7;
+          }
           var r = document.querySelector(':root');
           function myFunction_get(i) {
             var rs = getComputedStyle(r);
