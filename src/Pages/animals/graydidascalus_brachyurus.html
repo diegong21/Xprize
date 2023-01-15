@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- PYTHON_ENVIRONMENT -->
+  <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+  <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+  <title>TFG - Graydidascalus Brachyurus</title>
+  <!-- Material CDN -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+  rel="stylesheet">
+  <!-- STYLESHEET -->
+  <link rel="stylesheet" href="..\..\..\src\style.css">
+</head>
+<body>
+  <py-env>
+    - pandas
+    - Altair
+  </py-env>
+  <div class="container">
+    <aside>
+      <div class="top">
+        <div class="logo">
+          <img src="..\..\..\public\logo.png">
+          <h1>XPRIZE <span class="primary">AMAZONAS</span></h1>
+        </div>
+        <div class="close" id="close-btn">
+          <span class="material-icons-sharp">close</span>
+        </div>
+      </div>
+        <div class="sidebar">
+          <a href="..\main\index.html">
+            <span class="material-icons-sharp">dashboard</span>
+            <h3>Dashboard</h3>
+          </a>
+          <a href="..\main\animals.html" class="active">
+            <span class="material-icons-sharp">pets</span>
+            <h3>Animals</h3>
+          </a>
+          <a href="..\main\spectrograms.html">
+            <span class="material-icons-sharp">graphic_eq</span>
+            <h3>Spectograms</h3>
+          </a>
+        </div>
+    </aside>
+    <! ------------- END OF ASIDE ------------->
+    <main>
+      <div class="perfil">
+        <div class="photoperfil">
+          <img alt="Image of Animals" src="..\..\..\public\assets\Graydidascalus_brachyurus.jpg">
+        </div>
+        <h1>Graydidascalus Brachyurus</h1>
+      </div>
+      <div class="info-animal">
+        <a href="https://media.ebird.org/catalog?mediaType=photo&taxonCode=shtpar2" target="_blank">
+          <div class="images">
+            <div class="img">
+              <span class="material-icons-sharp">photo_camera</span>
+            </div>
+            <div class="middle">
+              <div class="left">
+                <h2>Images</h2>
+              </div>
+            </div>
+          </div>
+        </a>
+        <! ---END OF Images --->
+        <a href="https://ebird.org/species/shtpar2/" target="_blank">
+          <div class="images">
+            <div class="info">
+              <span class="material-icons-sharp">info</span>
+            </div>
+            <div class="middle">
+              <div class="left">
+                <h2>Info</h2>
+              </div>
+            </div>
+          </div>
+        </a>
+        <! ---END OF INFO --->
+        <a href="https://dibird.com/media/xeno/257683.mp3" target="_blank">
+          <div class="images">
+            <div class="sound">
+              <span class="material-icons-sharp">volume_up</span>
+            </div>
+            <div class="middle">
+              <div class="left">
+                <h2>Sound</h2>
+              </div>
+            </div>
+          </div>
+        </a>
+        <! ---END OF SOUND --->
+      </div>
+      <! ------------- END OF INFO-CARDS ------------->
+      <div class="individual-chart">
+        <h2>Individial Chart</h2>
+        <h3 class="cert">Minimum Certainty:</h3>
+        <input class="cenrtaintyValue" placeholder="Enter a value (Min. 1)" id="myInput" type="text" onChange="change()">
+        <div id="plot"></div>
+        <script>
+          function change() {
+            accuracy = document.getElementById("myInput").value;
+            localStorage.setItem("certainty_value", accuracy);
+            location.reload();
+          }
+          function accuracyValue() {
+            return accuracy2;
+          }
+          var accuracy = 7;
+          var accuracy2 = localStorage.getItem("certainty_value");
+          var r = document.querySelector(':root');
+          function myFunction_get(i) {
+            var rs = getComputedStyle(r);
+            return rs.getPropertyValue(i);
+          }
+        </script>
+        <div class="pyscript">
+          <py-script id="pyscript" output="plot">
+            import altair as alt
+            import pandas as pd
+  
+            from js import myFunction_get, accuracy2
+            from pyodide.http import open_url
+  
+            node = pd.read_json(open_url("https://raw.githubusercontent.com/diegong21/DashboardTFG/main/animals_con_foto.json"))
+            
+            node = node.drop(node[node['class_id'] != 'Graydidascalus Brachyurus'].index, inplace=False)
+            node = node.drop(node[node['value'] < 1].index, inplace=False)
+  
+            bind = alt.selection_interval(bind='scales')
+            multi = alt.selection_multi(on='mouseover')
+  
+            input_dropdown2 = alt.binding_select(options= [None] + list(node['day'].unique()), labels = ['All'] +list(node['day'].unique()), name='Day: ')
+            selection2 = alt.selection_single(fields=['day'], bind=input_dropdown2)
+  
+            plot = alt.Chart(node).mark_circle(
+                opacity=0.8,
+                stroke='black',
+                strokeWidth=1
+            ).encode(
+                alt.X('date', title='Hour', scale=alt.Scale(zero=False)),
+                alt.Y('class_id', title='Species'),
+                alt.Size('value',
+                    scale=alt.Scale(range=[0, int(myFunction_get('--chart-range'))]),
+                    legend=alt.Legend(title='Certainty (%)'),
+                ),
+                color=alt.condition(multi, 'class_id', alt.value('lightgray'), legend=None),
+                tooltip=['image',
+                        alt.Tooltip('date', title= 'Date'),
+                        alt.Tooltip('hoursminutes(date)', title= 'Hour'),
+                        alt.Tooltip('value', title= 'Certainty (%)')]
+            ).add_selection(
+                bind,
+                multi,
+                selection2
+            ).properties(
+                width=int(myFunction_get('--chart-width')),
+                height=int(myFunction_get('--chart-height')),
+                title=f"Min. Certainty:{accuracy2}"
+            ).transform_filter(
+                selection2
+            ).configure_axis(
+                labelFontSize=13,
+                titleFontSize=20
+            ).transform_filter(
+              f"datum.value > {accuracy2}"
+            )
+  
+            plot
+  
+          </py-script>
+        </div>
+      </div>
+    </main>
+    <! ------------- END OF MAIN ------------->
+  </div>
+</body>
+</html>

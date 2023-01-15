@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TFG - Spectrograms</title>
+  <!-- Material CDN -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+  rel="stylesheet">
+  <!-- STYLESHEET -->
+  <link rel="stylesheet" href="..\..\style.css">
+</head>
+<body>
+  <div class="container">
+    <aside>
+      <div class="top">
+        <div class="logo">
+          <img src="..\..\..\public\logo.png">
+          <h1>XPRIZE <span class="primary">AMAZONAS</span></h1>
+        </div>
+        <div class="close" id="close-btn">
+          <span class="material-icons-sharp">close</span>
+        </div>
+      </div>
+        <div class="sidebar">
+          <a href=".\index.html">
+            <span class="material-icons-sharp">dashboard</span>
+            <h3>Dashboard</h3>
+          </a>
+          <a href=".\animals.html">
+            <span class="material-icons-sharp">pets</span>
+            <h3>Animals</h3>
+          </a>
+          <a href="#" class="active">
+            <span class="material-icons-sharp">graphic_eq</span>
+            <h3>Spectrograms</h3>
+          </a>
+        </div>
+    </aside>
+    <main>
+      <h1>SPECTROGRAM</h1>
+      <div class="spectrogram">
+        <h2>Select date to show the spectrograms</h2>
+        <div class="desplegable">
+          <label for="btn" class="first">From date:
+            <span class="fas fa-caret-down"></span>
+          </label>
+          <input class="check" type="checkbox" id="btn">
+          <ul class="desple">
+            <li><a href="..\spectrograms\spectrogram1.html">14:09:55 08-05-2019</a></li>
+            <li><a href="..\spectrograms\spectrogram2.html">14:21:50 08-05-2019</a></li>
+            <li><a href="..\spectrograms\spectrogram3.html">14:33:40 08-05-2019</a></li>
+            <li><a href="..\spectrograms\spectrogram4.html">14:45:15 08-05-2019</a></li>
+            <li><a href="..\spectrograms\spectrogram5.html">14:57:08 08-05-2019</a></li>
+            <li><a href="..\spectrograms\spectrogram6.html">13:24:51 09-05-2019</a></li>
+            <li><a href="..\spectrograms\spectrogram7.html">13:28:21 09-05-2019</a></li>
+            <li><a href="..\spectrograms\spectrogram8.html">13:40:16 09-05-2019</a></li>
+            <li><a href="..\spectrograms\spectrogram9.html">13:52:09 09-05-2019</a></li>
+            <li><a href="..\spectrograms\spectrogram10.html">14:03:52 09-05-2019</a></li>
+            <li><a href="..\spectrograms\spectrogram11.html">14:15:36 09-05-2019</a></li>
+            <li><a href="..\spectrograms\spectrogram12.html">14:27:24 09-05-2019</a></li>
+          </ul>
+        </div>
+        <div class="spectotext" id="spec">
+          <h2>What is a Spectrogram?</h2>
+          <h3>A spectrogram is a picture of sound.</h3>
+          <h3>A spectrogram shows the frequencies that make up the sound.</h3>
+          <h3>A spectrogram of an audio track provides a visual indication of how the energy in different frequency bands changes over time.</h3> 
+          <img src="..\..\..\public\assets\specto.jpg" alt="Example of spectrogram"> 
+        </div>
+      </div>
+    </main>
+    <! ------------- END OF MAIN ------------->
+  </div>
+</body>
+</html>
+
+
