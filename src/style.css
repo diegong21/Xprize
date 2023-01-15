@@ -573,6 +573,33 @@ main .spectofoto img {
 /*******************MEDIA QUERIES*********************/
 /*****************************************************/
 
+@media screen and (max-height: 775px){
+  main .info-cards > div {
+    height: 28vh;
+    width: 20vw;
+  }
+
+  @media screen and (max-height: 550px){
+    main .info-cards > div {
+      height: 35vh;
+    }
+
+    main .info-cards > div span {
+      font-size: 1.6rem;
+    }
+
+    main .info-cards > div h1 {
+      font-size: 1.3rem;
+    }
+
+    main .info-cards > div h3 {
+      font-size: 0.9rem;
+    }
+  }
+}
+
+
+
 /* ----------- MEDIA QUERIES SMALL PC ----------- */
 @media screen and (max-width: 1600px){
   /*CHART VARIABLES*/
@@ -586,6 +613,31 @@ main .spectofoto img {
   main .info-cards > div {
     height: 20vh;
     width: 28vh;
+  }
+
+  @media screen and (max-height: 775px){   
+    main .info-cards > div {
+      height: 28vh;
+      width: 17vw;
+    }
+  
+    @media screen and (max-height: 550px){
+      main .info-cards > div {
+        height: 35vh;
+      }
+  
+      main .info-cards > div span {
+        font-size: 1.6rem;
+      }
+  
+      main .info-cards > div h1 {
+        font-size: 1.3rem;
+      }
+  
+      main .info-cards > div h3 {
+        font-size: 0.9rem;
+      }
+    }
   }
 }
 
@@ -633,6 +685,30 @@ main .spectofoto img {
   main .info-cards > div {
     height: 20vh;
     width: 24vh;
+  }
+  @media screen and (max-height: 775px){
+    main .info-cards > div {
+      height: 28vh;
+      width: 17vw;
+    }
+  
+    @media screen and (max-height: 550px){
+      main .info-cards > div {
+        height: 35vh;
+      }
+  
+      main .info-cards > div span {
+        font-size: 1.6rem;
+      }
+  
+      main .info-cards > div h1 {
+        font-size: 1.3rem;
+      }
+  
+      main .info-cards > div h3 {
+        font-size: 0.9rem;
+      }
+    }
   }
 }
 
@@ -765,6 +841,26 @@ main .spectofoto img {
     font-size: 1.2rem;
   }
   
+  @media screen and (max-height: 775px){
+    main .info-cards > div {
+      height: 24vh;
+      width: 33vw;
+    }
+  
+    @media screen and (max-height: 550px){
+      main .info-cards > div span {
+        font-size: 1.6rem;
+      }
+  
+      main .info-cards > div h1 {
+        font-size: 1.3rem;
+      }
+  
+      main .info-cards > div h3 {
+        font-size: 0.9rem;
+      }
+    }
+  }
 }
 
 /* ----------- MEDIA QUERIES MOBILE----------- */
@@ -823,5 +919,26 @@ main .spectofoto img {
     height: 15vh;
     width: 25vh;
     margin-bottom: 10px;
+  }
+
+  @media screen and (max-height: 775px){
+    main .info-cards > div {
+      height: 24vh;
+      width: 33vw;
+    }
+  
+    @media screen and (max-height: 550px){
+      main .info-cards > div span {
+        font-size: 1.6rem;
+      }
+  
+      main .info-cards > div h1 {
+        font-size: 1.3rem;
+      }
+  
+      main .info-cards > div h3 {
+        font-size: 0.9rem;
+      }
+    }
   }
 }
