@@ -152,7 +152,8 @@
                 ),
                 href='url_name',
                 color=alt.condition(multi, 'class_id', alt.value('lightgray'), legend=None),
-                tooltip=['image', 
+                tooltip=['image',
+                        alt.Tooltip('class_id', title='Specie'), 
                         alt.Tooltip('date', title= 'Date'),
                         alt.Tooltip('hoursminutes(date)', title= 'Hour'),
                         alt.Tooltip('value', title= 'Certainty (%)')]
