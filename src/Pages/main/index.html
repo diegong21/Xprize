@@ -124,7 +124,7 @@
             from js import myFunction_get, accuracy2
             from pyodide.http import open_url
   
-            node = pd.read_json(open_url("https://raw.githubusercontent.com/diegong21/DashboardTFG/main/animals_con_foto.json"))
+            node = pd.read_json(open_url("https://raw.githubusercontent.com/diegong21/Xprize/main/src/data/animals_definitius.json"))
   
             node = node.drop(node[node['value'] < 5].index, inplace=False)
   
@@ -137,7 +137,9 @@
             input_dropdown2 = alt.binding_select(options= [None] + list(node['day'].unique()), labels = ['All'] +list(node['day'].unique()), name='Day: ')
             selection2 = alt.selection_single(fields=['day'], bind=input_dropdown2)
   
-            plot = alt.Chart(node).mark_circle(
+            plot = alt.Chart(node).transform_calculate(
+                url='https://diegong21.github.io/Xprize/src/Pages/animals/' + alt.datum.url_name
+            ).mark_circle(
                 opacity=0.8,
                 stroke='black',
                 strokeWidth=1
@@ -148,6 +150,7 @@
                     scale=alt.Scale(range=[0, int(myFunction_get('--chart-range'))]),
                     legend=alt.Legend(title='Certainty (%)'),
                 ),
+                href='url_name',
                 color=alt.condition(multi, 'class_id', alt.value('lightgray'), legend=None),
                 tooltip=['image',
                         alt.Tooltip('date', title= 'Date'),
