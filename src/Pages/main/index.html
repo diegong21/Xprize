@@ -138,7 +138,7 @@
             selection2 = alt.selection_single(fields=['day'], bind=input_dropdown2)
   
             plot = alt.Chart(node).transform_calculate(
-                url='https://diegong21.github.io/Xprize/src/Pages/animals/' + alt.datum.url_name
+                url='https://diegong21.github.io/' + alt.datum.url_name
             ).mark_circle(
                 opacity=0.8,
                 stroke='black',
@@ -152,7 +152,7 @@
                 ),
                 href='url_name',
                 color=alt.condition(multi, 'class_id', alt.value('lightgray'), legend=None),
-                tooltip=['image',
+                tooltip=['image', 
                         alt.Tooltip('date', title= 'Date'),
                         alt.Tooltip('hoursminutes(date)', title= 'Hour'),
                         alt.Tooltip('value', title= 'Certainty (%)')]
