@@ -128,7 +128,7 @@
             from js import myFunction_get, accuracy2
             from pyodide.http import open_url
   
-            node = pd.read_json(open_url("https://raw.githubusercontent.com/diegong21/DashboardTFG/main/animals_con_foto.json"))
+            node = pd.read_json(open_url("https://raw.githubusercontent.com/diegong21/Xprize/main/src/data/animals_definitius.json"))
             
             node = node.drop(node[node['class_id'] != 'Phyllomedusa Camba'].index, inplace=False)
             node = node.drop(node[node['value'] < 3].index, inplace=False)

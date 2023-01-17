@@ -128,7 +128,7 @@
             from js import myFunction_get, accuracy2
             from pyodide.http import open_url
   
-            node = pd.read_json(open_url("https://raw.githubusercontent.com/diegong21/DashboardTFG/main/animals_con_foto.json"))
+            node = pd.read_json(open_url("https://raw.githubusercontent.com/diegong21/Xprize/main/src/data/animals_definitius.json"))
             
             df = node[(node['class_id'] == 'Xiphorhynchus Guttatus Call')]
             df2 = node[(node['class_id'] == 'Xiphorhynchus Guttatus Song')]
